@@ -178,7 +178,11 @@ func (r *Render) Render(buffer *Buffer, completion *CompletionManager) {
 
 	line := buffer.Text()
 	prefix := r.getCurrentPrefix()
-	cursor := runewidth.StringWidth(prefix) + runewidth.StringWidth(line)
+
+	prefixWidth := runewidth.StringWidth(prefix)
+	lineWidth := runewidth.StringWidth(line)
+
+	cursor := prefixWidth + lineWidth
 
 	// prepare area
 	_, y := r.toPos(cursor)
